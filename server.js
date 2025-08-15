@@ -6,12 +6,35 @@ import dotenv from "dotenv";
 dotenv.config();
 const app = express();
 
-app.use(cors({
-    origin: [process.env.FRONT_DEV, process.env.FRONT_PROD], 
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], 
-    allowedHeaders: ["Content-Type", "Authorization"], 
-    credentials: true, 
-  }));
+app.use(
+  cors({
+    origin: [process.env.FRONT_DEV, process.env.FRONT_PROD],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: [
+      "Content-Type",
+      "Authorization",
+      "X-Requested-With",
+      "Accept",
+      "Origin",
+    ],
+    credentials: true,
+    optionsSuccessStatus: 200,
+    preflightContinue: false,
+    credentials: true,
+  })
+);
+
+app.options("*", (req, res) => {
+  res.header("Access-Control-Allow-Origin", req.headers.origin);
+  res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Content-Type, Authorization, Content-Length, X-Requested-With"
+  );
+  res.header("Access-Control-Allow-Credentials", true);
+  res.sendStatus(200);
+});
+
 app.use(express.json());
 
 const transporter = nodemailer.createTransport({
