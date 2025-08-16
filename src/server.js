@@ -1,9 +1,8 @@
 import express from "express";
 import nodemailer from "nodemailer";
 import cors from "cors";
-import dotenv from "dotenv";
+import "dotenv/config";
 
-dotenv.config();
 const app = express();
 
 app.use(express.json());
