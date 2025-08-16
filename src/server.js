@@ -57,7 +57,7 @@ app.post("/enviar-inscripcion", async (req, res) => {
 
   try {
     await transporter.sendMail({
-      from: `"Feed Digital Cursos" <${process.env.EMAIL_USER}>`,
+      from: `"Digital Dev Cursos" <${process.env.EMAIL_USER}>`,
       to: "feeddigitalcursos@gmail.com",
       subject: "Nueva Inscripción al Curso",
       html: `
@@ -86,7 +86,7 @@ app.post("/enviar-consulta", async (req, res) => {
 
   try {
     await transporter.sendMail({
-      from: `"Feed Digital Cursos" <${process.env.EMAIL_USER}>`,
+      from: `"Digital Dev Cursos" <${process.env.EMAIL_USER}>`,
       to: "feeddigitalcursos@gmail.com",
       subject: "Consulta de curso",
       html: `
