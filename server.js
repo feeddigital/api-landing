@@ -45,6 +45,10 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+app.get('/status', (req, res)=>{
+  res.send('server ok')
+})
+
 // Ruta para enviar email de inscripción
 app.post("/enviar-inscripcion", async (req, res) => {
   const { nombre, apellido, email, whatsapp, planPago } = req.body;
