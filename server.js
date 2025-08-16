@@ -6,6 +6,7 @@ import dotenv from "dotenv";
 dotenv.config();
 const app = express();
 
+app.use(express.json());
 app.use(
   cors({
     origin: [process.env.FRONT_DEV, process.env.FRONT_PROD],
@@ -17,7 +18,6 @@ app.use(
       "Accept",
       "Origin",
     ],
-    credentials: true,
     optionsSuccessStatus: 200,
     preflightContinue: false,
     credentials: true,
@@ -35,7 +35,6 @@ app.options("*", (req, res) => {
   res.sendStatus(200);
 });
 
-app.use(express.json());
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
@@ -45,7 +44,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-app.get('/status', (req, res)=>{
+app.get('/', (req, res)=>{
   res.send('server ok')
 })
 
