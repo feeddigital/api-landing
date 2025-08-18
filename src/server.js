@@ -91,7 +91,11 @@ app.post("/enviar-consulta", async (req, res) => {
       html: `
         <h2>Nueva consulta</h2>
         <p><b>Email:</b> ${email}</p>
-    ${message || <p>Consulta por días y horarios disponibles.</p>}
+        <p><b>Mensaje:</b> ${
+          message && message.trim() !== ""
+            ? message
+            : "Consulta por días y horarios disponibles."
+        }</p>
       `,
     });
 
