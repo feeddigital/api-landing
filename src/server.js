@@ -34,7 +34,6 @@ app.options("*", (req, res) => {
   res.sendStatus(200);
 });
 
-
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
@@ -43,9 +42,9 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-app.get('/', (req, res)=>{
-  res.send('server ok')
-})
+app.get("/", (req, res) => {
+  res.send("server ok");
+});
 
 // Ruta para enviar email de inscripción
 app.post("/enviar-inscripcion", async (req, res) => {
@@ -78,7 +77,7 @@ app.post("/enviar-inscripcion", async (req, res) => {
 
 // Ruta para enviar email de consulta
 app.post("/enviar-consulta", async (req, res) => {
-  const { email } = req.body;
+  const { email, message } = req.body;
 
   if (!email) {
     return res.status(400).json({ error: "Falta el email" });
@@ -92,7 +91,7 @@ app.post("/enviar-consulta", async (req, res) => {
       html: `
         <h2>Nueva consulta</h2>
         <p><b>Email:</b> ${email}</p>
-        <p>Consulta por días y horarios disponibles.</p>
+    ${message || <p>Consulta por días y horarios disponibles.</p>}
       `,
     });
 
