@@ -135,7 +135,7 @@ app.post("/clase-intro", async (req, res) => {
       subject: "¡Bienvenido/a a Digital Dev!",
       html: `
        <div style="background-color:#000000; color:#ffffff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding:40px; text-align:center;">
-  <img src="https://digitaldevcursos.com/LOGO_CUADRADO_2.jpg" alt="Digital Dev Logo" style="max-width:150px; margin-bottom:20px;" />
+  <img src="https://api-landing-seven.vercel.app/LOGO_CUADRADO_2.jpg" alt="Digital Dev Logo" style="max-width:150px; margin-bottom:20px;" />
   <h1 style="font-weight:600;">Hola ${nombre}, ¡Bienvenido/a a <span style="color:#00ffcc;">Digital Dev</span>!</h1>
   <p style="font-size:16px; line-height:1.5; margin:20px 0;">
     Te compartimos el link para que puedas ver la <b>primer clase del curso de Desarrollo Web FullStack</b>.
