@@ -106,6 +106,72 @@ app.post("/enviar-consulta", async (req, res) => {
   }
 });
 
+app.post("/clase-intro", async (req, res) => {
+  const { nombre, apellido, email, whatsapp } = req.body;
+
+  if (!nombre || !apellido || !email) {
+    return res.status(400).json({ error: "Faltan datos obligatorios" });
+  }
+
+  try {
+    // 1️⃣ Notificación al administrador
+    await transporter.sendMail({
+      from: `"Digital Dev Cursos" <${process.env.EMAIL_USER}>`,
+      to: process.env.EMAIL_USER,
+      subject: "Nuevo Registro (Clase Intro)",
+      html: `
+        <h2>Nuevo registro para la clase introductoria</h2>
+        <p><b>Nombre:</b> ${nombre} ${apellido}</p>
+        <p><b>Email:</b> ${email}</p>
+        <p><b>WhatsApp:</b> ${whatsapp || "No proporcionado"}</p>
+      `,
+    });
+
+    // 2️⃣ Mail de bienvenida al alumno
+    await transporter.sendMail({
+      from: `"Digital Dev Cursos" <${process.env.EMAIL_USER}>`,
+      to: email,
+      subject: "¡Bienvenido/a a Digital Dev!",
+      html: `
+       <div style="background-color:#000000; color:#ffffff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding:40px; text-align:center;">
+  <img src="https://digitaldevcursos.com/LOGO_CUADRADO_2.jpg" alt="Digital Dev Logo" style="max-width:150px; margin-bottom:20px;" />
+  <h1 style="font-weight:600;">Hola ${nombre}, ¡Bienvenido/a a <span style="color:#00ffcc;">Digital Dev</span>!</h1>
+  <p style="font-size:16px; line-height:1.5; margin:20px 0;">
+    Te compartimos el link para que puedas ver la <b>primer clase del curso de Desarrollo Web FullStack</b>.
+  </p>
+
+  <p style="margin:30px 0;">
+    <a href="https://www.youtube.com/watch?v=XXXXXXXXXXX" 
+       target="_blank" 
+       style="background-color:#00ffcc; color:#000; padding:12px 20px; text-decoration:none; font-weight:bold; border-radius:6px; display:inline-block;">
+       👉 Ver Clase Introductoria
+    </a>
+  </p>
+
+  <p style="font-size:16px; line-height:1.5; margin:20px 0;">
+    Esta clase introductoria no tiene costo 🚀.  
+    Si deseas continuar con las demás clases, te invitamos a inscribirte desde el formulario en nuestra web 👉
+    <a href="https://digitaldevcursos.com" target="_blank" style="color:#00ffcc; text-decoration:none;">digitaldevcursos.com</a>
+  </p>
+  <hr style="border: 0; border-top: 1px solid #444; margin: 30px 0;" />
+  <p style="font-size:14px; color:#aaaaaa;">
+    ¡Gracias por confiar en nosotros!<br />
+    <b>Team Digital Dev</b>
+  </p>
+</div>
+      `,
+    });
+
+    res.json({
+      success: true,
+      message: "Correo de bienvenida enviado correctamente",
+    });
+  } catch (error) {
+    console.error("Error enviando correo de bienvenida:", error);
+    res.status(500).json({ success: false, message: "Error enviando correos" });
+  }
+});
+
 const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`Servidor escuchando en puerto ${PORT}`);
