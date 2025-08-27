@@ -149,7 +149,7 @@ app.post("/clase-intro", async (req, res) => {
     </a>
   </p>
 
-  <p style="font-size:16px; line-height:1.5; margin:20px 0;">
+  <p style="font-size:18px; line-height:1.5; margin:20px 0;">
     Esta clase introductoria no tiene costo 🚀.  
     Si deseas continuar con las demás clases, te invitamos a inscribirte desde el formulario en nuestra web 👉
     <a href="https://digitaldevcursos.com" target="_blank" style="color:#00ffcc; text-decoration:none;">digitaldevcursos.com</a>
