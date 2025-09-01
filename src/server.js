@@ -157,7 +157,7 @@ app.post("/clase-intro", async (req, res) => {
   <hr style="border: 0; border-top: 1px solid #444; margin: 30px 0;" />
   <p style="font-size:14px; color:#aaaaaa;">
     ¡Gracias por confiar en nosotros!<br />
-    <b>Por cualquier consulta o problema para abrir el link, no dudes en contactarnos. Respondé este mensaje.</b>
+    <b>Por cualquier consulta o problema para abrir el link, no dudes en contactarnos. Respondé este mensaje.</b><br />
     <b>Team Digital Dev</b>
   </p>
 </div>
