@@ -142,7 +142,7 @@ app.post("/clase-intro", async (req, res) => {
   </p>
 
   <p style="margin:30px 0;">
-    <a href="https://www.youtube.com/watch?v=XXXXXXXXXXX" 
+    <a href="https://youtu.be/gDI4ovmR9L8" 
        target="_blank" 
        style="background-color:#00ffcc; color:#000; padding:12px 20px; text-decoration:none; font-weight:bold; border-radius:6px; display:inline-block;">
        👉 Ver Clase Introductoria
